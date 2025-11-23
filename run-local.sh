@@ -3,12 +3,14 @@
 echo "🚀 Starting Spring Boot Application..."
 echo ""
 
-# Check if Maven is installed
-if ! command -v mvn &> /dev/null; then
-    echo "❌ Maven is not installed. Please install Maven first."
-    echo "Visit: https://maven.apache.org/install.html"
+# Check if gradlew exists
+if [ ! -f "./gradlew" ]; then
+    echo "❌ Gradle wrapper not found. Please ensure gradlew exists."
     exit 1
 fi
+
+# Make gradlew executable if it isn't
+chmod +x ./gradlew
 
 # Check Java version
 echo "📋 Checking Java version..."
@@ -16,7 +18,7 @@ java -version
 
 echo ""
 echo "🔨 Building application..."
-mvn clean package -DskipTests
+./gradlew build -x test
 
 if [ $? -eq 0 ]; then
     echo ""
@@ -31,7 +33,7 @@ if [ $? -eq 0 ]; then
     echo "  - http://localhost:8080/api/status"
     echo "  - http://localhost:8080/actuator/health"
     echo ""
-    java -jar target/spring-vercel-app.jar
+    java -jar build/libs/spring-vercel-app.jar
 else
     echo ""
     echo "❌ Build failed. Please check the errors above."

@@ -5,12 +5,11 @@ Get your Spring Boot application running in 5 minutes!
 ## Prerequisites
 
 - **Java 17+** - [Download here](https://adoptium.net/)
-- **Maven 3.6+** - [Download here](https://maven.apache.org/download.cgi)
 
 Check your installation:
 ```bash
 java -version
-mvn -version
+./gradlew --version
 ```
 
 ## 🚀 Run Locally (3 Options)
@@ -25,9 +24,9 @@ mvn -version
 make run
 ```
 
-### Option 3: Use Maven directly
+### Option 3: Use Gradle directly
 ```bash
-mvn spring-boot:run
+./gradlew bootRun
 ```
 
 ## ✅ Test the Application
@@ -96,11 +95,11 @@ lsof -ti:8080 | xargs kill -9
 
 # Or change the port
 export PORT=9090
-mvn spring-boot:run
+./gradlew bootRun
 ```
 
-**Maven command not found?**
-- Install Maven from https://maven.apache.org/install.html
+**Gradle wrapper not working?**
+- Make sure gradlew is executable: `chmod +x gradlew`
 
 **Java version mismatch?**
 - Install Java 17 from https://adoptium.net/

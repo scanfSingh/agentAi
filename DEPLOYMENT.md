@@ -146,7 +146,7 @@ eb deploy
 
 ```bash
 # Build JAR
-mvn clean package
+./gradlew build
 
 # Initialize for Java platform
 eb init -p java-17 spring-vercel-app

@@ -38,20 +38,17 @@ While this application is ready for deployment, **we recommend using alternative
 
 ### Prerequisites
 - Java 17 or higher
-- Maven 3.6+ or use included wrapper
+- Gradle 8.5+ or use included wrapper
 
 ### Run Locally
 
 ```bash
-# Using Maven
-mvn spring-boot:run
-
-# Or using Maven wrapper (if available)
-./mvnw spring-boot:run
+# Using Gradle wrapper (recommended)
+./gradlew bootRun
 
 # Or build and run the JAR
-mvn clean package
-java -jar target/spring-vercel-app.jar
+./gradlew build
+java -jar build/libs/spring-vercel-app.jar
 ```
 
 The application will start at `http://localhost:8080`
@@ -161,7 +158,12 @@ gcloud run deploy spring-vercel-app \
 │       └── resources/
 │           ├── application.properties
 │           └── application-prod.properties
-├── pom.xml
+├── build.gradle
+├── settings.gradle
+├── gradlew
+├── gradlew.bat
+├── gradle/
+│   └── wrapper/
 ├── Dockerfile
 ├── .dockerignore
 ├── .gitignore
@@ -174,7 +176,7 @@ gcloud run deploy spring-vercel-app \
 - **Spring Boot 3.2.0** - Application framework
 - **Spring Web** - REST API
 - **Spring Actuator** - Health checks and monitoring
-- **Maven** - Build tool
+- **Gradle** - Build tool
 - **Lombok** - Reduce boilerplate code
 
 ## ⚙️ Configuration
@@ -193,10 +195,10 @@ gcloud run deploy spring-vercel-app \
 
 ```bash
 # Run tests
-mvn test
+./gradlew test
 
 # Run tests with coverage
-mvn test jacoco:report
+./gradlew test jacocoTestReport
 ```
 
 ## 📝 Adding New Endpoints
@@ -231,8 +233,8 @@ public class UserController {
 
 ### Application won't start
 - Check Java version: `java -version` (should be 17+)
-- Check Maven version: `mvn -version`
-- Clean and rebuild: `mvn clean install`
+- Check Gradle version: `./gradlew --version`
+- Clean and rebuild: `./gradlew clean build`
 
 ### Port already in use
 ```bash
